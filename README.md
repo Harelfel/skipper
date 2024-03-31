@@ -1,6 +1,6 @@
 # Skipper
 
-## Easily dockerize your Git repository
+## Easily dockerize your  Git repository
 
 [![Build Status](https://github.com/Stratoscale/skipper/workflows/build/badge.svg?branch=upstream)](https://github.com/Stratoscale/skipper/actions) [![Release Status](https://github.com/Stratoscale/skipper/workflows/Releases/badge.svg)](https://github.com/Stratoscale/skipper/actions) [![PyPI - Version](https://img.shields.io/pypi/v/strato-skipper?logo=pypi&label=pypi%20package&color=2334D058&cacheSeconds=10)](https://pypi.org/project/strato-skipper)
 
