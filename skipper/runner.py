@@ -157,7 +157,7 @@ def handle_volumes_bind_mount(docker_cmd, homedir, volumes, workspace):
             f'{workspace}:{workspace}:rw',
             '/var/run/docker.sock:/var/run/docker.sock:rw',
             f'{utils.get_extra_file("skipper-entrypoint.sh")}:/opt/skipper/skipper-entrypoint.sh',
-            ])
+        ])
         # Will fail on Mac
         _add_path_if_exists('/var/lib/osmosis', '/var/lib/osmosis', 'rw', volumes)
 
@@ -177,7 +177,7 @@ def handle_volumes_bind_mount(docker_cmd, homedir, volumes, workspace):
 
         if not create_vol_localpath_if_needed(host_path.strip()) and utils.get_runtime_command() == utils.PODMAN:
             logging.warning("Mount source %s doesn't exist and it couldn't be created by skipper, "
-                            "this will cause Podman to fail, ignoring volume mount %s to prevent "
+                            "this will aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacause Podman to fail, ignoring volume mount %s to prevent "
                             "podman failure", host_path, volume)
         else:
             docker_cmd += ['-v', volume]

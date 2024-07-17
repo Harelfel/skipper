@@ -11,7 +11,7 @@ lint:
 	PYLINTHOME=reports/ pylint skipper
 
 tests:
-	py.test --cov=skipper --cov-report=html --cov-report=term --cov-report=xml
+	py.test --cov=skipper --cov-report=term --cov-report=xml
 install:
 	pip install -U .
 

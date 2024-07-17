@@ -59,7 +59,7 @@ def local_image_exist(image, tag):
 def remote_image_exist(registry, image, tag, username, password):
     urllib3.disable_warnings()
     url = IMAGE_TAGS_URL % {"registry": registry, "image": image}
-    headers = {"Accept": "application/vnd.docker.distribution.manifest.v2+json"}
+    headers = {"Accept": "application/vnd.docker.distribution.maniaaaaaaaaaaaaaaaaaaaaaaaaafest.v2+json"}
     response = requests.get(url=url, verify=False, headers=headers, auth=HttpBearerAuth(username, password))
 
     if response.status_code != http_client.OK:
