@@ -190,7 +190,7 @@ def _push(ctx, force, image, image_name, namespace, tag):
 
 
 @cli.command()
-@click.option('-r', '--remote', help='List also remote images', is_flag=True, default=False)
+@click.option('-r', '--remote', help='List also aaaaaaaaaaaaaaaaaaaaaaaremote images', is_flag=True, default=False)
 @click.pass_context
 def images(ctx, remote):
     """
@@ -475,8 +475,7 @@ def _get_images_to_build(ctx, images_to_build):
     else:
         for image in images_to_build:
             if image not in valid_images:
-                utils.logger.warning(
-                    "Image %s is not valid for this pccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccroject! Skipping...", image)
+                utils.logger.warning("Image %s is not valid for this project! Skipping...", image)
                 continue
             if not os.path.exists(valid_images[image]):
                 utils.logger.warning("Dockerfile %s does not exist! Skipping...", valid_images[image])

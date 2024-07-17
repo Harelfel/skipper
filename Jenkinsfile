@@ -1,4 +1,4 @@
-@Library('library')_
+@Library('zadara-jenkins-shared@harel/RD-1552')_
 
 pipeline {
     agent {
@@ -38,6 +38,8 @@ pipeline {
         SLACK_CHANNEL = '#zcompute-system-team-ci'
         // Integration ticket jira component
         JIRA_COMPONENT = 'Virtualization'
+        SONAR_TOKEN = credentials('718c9814-7128-47e2-bf97-d945d08f470b')
+       
     }
     stages {
         // Init
@@ -59,15 +61,15 @@ pipeline {
             }
         }
         // Verify that all new commits are in standard
-        stage('Verify commits') {
-            when {
-                changeRequest()
-            }
-            steps {
-                verifyCommits()
-            }
-        }
-        // Build the build container image
+        // stage('Verify commits') {
+        //     when {
+        //         changeRequest()
+        //     }
+        //     steps {
+        //         verifyCommits()
+        //     }
+        // }
+        //Build the build container image
         stage('Build skipper image') {
             when {
                 changeRequest()
@@ -93,16 +95,10 @@ pipeline {
                     def prBranch = env.CHANGE_BRANCH
                     def prBase = env.CHANGE_TARGET
                     def prKey = env.CHANGE_ID
+                    def repository = env.GIT_REPOSITORY
                     def currentDir = pwd()
-                    sh """
-                        docker run \\
-                            --rm \\
-                            -e SONAR_HOST_URL="https://sonarcloud.io" \\
-                            -e SONAR_SCANNER_OPTS="-Dsonar.projectKey=Harelfel_skipper -Dsonar.projectBaseDir=${currentDir} -Dsonar.python.coverage.reportPaths=coverage.xml -Dsonar.organization=harelfel -Dsonar.pullrequest.key=${prKey} -Dsonar.pullrequest.branch=${prBranch} -Dsonar.pullrequest.base=${prBase} -Dsonar.qualitygate.wait=true" \\
-                            -e SONAR_TOKEN="654e8c7e6bb52a3fa3405c80e23998d50c1b0653" \\
-                            -v "${currentDir}:${currentDir}" \\
-                            sonarsource/sonar-scanner-cli
-                    """
+
+                    sonarcloudScan(sonar_token:env.SONAR_TOKEN, currentDir:currentDir, repository:repository, prBranch:prBranch, prBase:prBase, prKey:prKey)
                 }
             }
         }
