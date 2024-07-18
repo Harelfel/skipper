@@ -1,0 +1,7 @@
+.coveragerc
+.gitignore
+Jenkinsfile
+Makefile
+coverage.xml
+skipper/cli.py
+sonar-project.properties
